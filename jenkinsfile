@@ -9,7 +9,7 @@ git url: 'https://github.com/divyabilson/Test', branch: 'main'
 
 stage('Build'){
 steps{
-sh 'sudo docker build . -t nodejs'
+sh 'sudo docker build -t nodejs .'
    }
   }
  }
