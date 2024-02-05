@@ -3,7 +3,7 @@ agent any
 environment {
         AWS_ACCOUNT_ID="079859149351"
         AWS_DEFAULT_REGION="ap-south-2"
-        IMAGE_REPO_NAME="jenkins-pipeline"
+        IMAGE_REPO_NAME="noderepo"
         IMAGE_TAG="v1"
         REPOSITORY_URI = "079859149351.dkr.ecr.ap-south-2.amazonaws.com/noderepo"
     }
