@@ -14,8 +14,7 @@ pipeline {
 
         stage('Build') { 
             steps { 
-                script{
-                 app = docker.build("underwater")
+                docker build -t nodeapp:${BUILD_NUMBER} .
                 }
             }
         }
