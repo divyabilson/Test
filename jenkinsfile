@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    options {
-        skipStagesAfterUnstable()
-    }
 environment {
         AWS_ACCOUNT_ID="897901741304"
         AWS_DEFAULT_REGION="us-east-1"
@@ -13,22 +10,15 @@ environment {
     stages {
          stage('Clone repository') { 
             steps { 
-                script{
-                checkout scm
+                git url: 'https://github.com/divyabilson/Test', branch: 'main'
                 }
             }
         }
 
         stage('Build') { 
             steps { 
-                script{
-                 app = docker.build("underwater")
+                sh 'sudo docker build -t "${IMAGE_REPO_NAME}:${IMAGE_TAG}" .'
                 }
-            }
-        }
-        stage('Test'){
-            steps {
-                 echo 'Empty'
             }
         }
         stage('Deploy') {
