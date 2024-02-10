@@ -16,7 +16,7 @@ git url: 'https://github.com/divyabilson/Test', branch: 'main'
 
 stage('Build'){
 steps{
-sh 'sudo docker build -t "${IMAGE_REPO_NAME}:${IMAGE_TAG} . '
+sh 'sudo docker build -t "${IMAGE_REPO_NAME}:${IMAGE_TAG} .'
    }
   }
 stage('Logging into AWS ECR') {
