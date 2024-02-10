@@ -3,6 +3,13 @@ pipeline {
     options {
         skipStagesAfterUnstable()
     }
+environment {
+        AWS_ACCOUNT_ID="897901741304"
+        AWS_DEFAULT_REGION="us-east-1"
+        IMAGE_REPO_NAME="noderepo"
+        IMAGE_TAG="${env.BUILD_NUMBER}"
+        REPOSITORY_URI = "897901741304.dkr.ecr.us-east-1.amazonaws.com/noderepo"
+    }
     stages {
          stage('Clone repository') { 
             steps { 
@@ -26,10 +33,10 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                script{
-                        docker.withRegistry('897901741304.dkr.ecr.us-east-1.amazonaws.com/noderepo', 'ecr:us-east-1:aws-credentials') {
-                    app.push("${env.BUILD_NUMBER}")
-                    app.push("latest")
+sh """aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 897901741304.dkr.ecr.us-east-1.amazonaws.com"""
+sh """docker tag ${IMAGE_REPO_NAME}:${IMAGE_TAG} ${REPOSITORY_URI}:${IMAGE_TAG}"""
+sh """docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}"""
+                
                     }
                 }
             }
