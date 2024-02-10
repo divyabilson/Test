@@ -4,7 +4,7 @@ environment {
         AWS_ACCOUNT_ID="897901741304"
         AWS_DEFAULT_REGION="us-east-1"
         IMAGE_REPO_NAME="noderepo"
-        IMAGE_TAG="v3"
+        IMAGE_TAG="${build_number}"
         REPOSITORY_URI = "897901741304.dkr.ecr.us-east-1.amazonaws.com/noderepo"
     }
 stages{
